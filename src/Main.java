@@ -4,21 +4,24 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try{
-
-            File strings = new File("strings.txt");
-            File integers = new File("integers.txt");
-            File floats = new File("floats.txt");
-            FileWriter stringsWriter = new FileWriter("strings.txt");
-            FileWriter integersWriter = new FileWriter("integers.txt");
-            FileWriter floatsWriter = new FileWriter("floats.txt");
+            String prefix = "";
+            String dirName = "";
 
             for (int i = 0; i < args.length; i++) {
                 if(args[i].equals("-p")) {
-                    stringsWriter = new FileWriter(args[i+1] + "strings.txt");
-                    integersWriter = new FileWriter(args[i+1] + "integers.txt");
-                    floatsWriter = new FileWriter(args[i+1] + "floats.txt");
+                    prefix = args[i+1];
+                } else if(args[i].equals("-o")) {
+                    dirName = args[i+1];
+                    File dir = new File(dirName);
+                    if(!dir.exists()){
+                        dir.mkdir();
+                    }
                 }
             }
+
+            FileWriter stringsWriter = new FileWriter(dirName + "/" + prefix + "strings.txt");
+            FileWriter integersWriter = new FileWriter(dirName + "/" + prefix + "integers.txt");
+            FileWriter floatsWriter = new FileWriter(dirName + "/" + prefix + "floats.txt");
 
             BufferedReader reader = new BufferedReader(new FileReader("filename.txt"));
             String line = reader.readLine();
