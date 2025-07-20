@@ -6,6 +6,7 @@ public class Main {
         try{
             String prefix = "";
             String dirName = "";
+            String path = "";
 
             for (int i = 0; i < args.length; i++) {
                 if(args[i].equals("-p")) {
@@ -19,9 +20,16 @@ public class Main {
                 }
             }
 
-            FileWriter stringsWriter = new FileWriter(dirName + "/" + prefix + "strings.txt");
-            FileWriter integersWriter = new FileWriter(dirName + "/" + prefix + "integers.txt");
-            FileWriter floatsWriter = new FileWriter(dirName + "/" + prefix + "floats.txt");
+            if(dirName != ""){
+                path = dirName + "/";
+            }
+            if(prefix != ""){
+                path += prefix + "_";
+            }
+
+            FileWriter stringsWriter = new FileWriter(path+ "strings.txt");
+            FileWriter integersWriter = new FileWriter(path + "integers.txt");
+            FileWriter floatsWriter = new FileWriter(path + "floats.txt");
 
             BufferedReader reader = new BufferedReader(new FileReader("filename.txt"));
             String line = reader.readLine();
