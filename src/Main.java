@@ -10,7 +10,9 @@ public class Main {
             while (line != null){
                 if(isNumber(line)){
                     System.out.println("number " + line);
-                }else{
+                }else if(isFloat(line)){
+                    System.out.println("float " + line);
+                }else {
                     System.out.println(line);
                 }
                 line = reader.readLine();
@@ -24,6 +26,14 @@ public class Main {
     public static boolean isNumber(String arg) {
         try{
             Integer.parseInt(arg);
+            return true;
+        } catch (NumberFormatException e){
+            return  false;
+        }
+    }
+    public static boolean isFloat(String arg) {
+        try{
+            Float.parseFloat(arg);
             return true;
         } catch (NumberFormatException e){
             return  false;
