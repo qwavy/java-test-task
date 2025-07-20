@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try{
+
             File strings = new File("strings.txt");
             File integers = new File("integers.txt");
             File floats = new File("floats.txt");
@@ -11,19 +12,24 @@ public class Main {
             FileWriter integersWriter = new FileWriter("integers.txt");
             FileWriter floatsWriter = new FileWriter("floats.txt");
 
+            for (int i = 0; i < args.length; i++) {
+                if(args[i].equals("-p")) {
+                    stringsWriter = new FileWriter(args[i+1] + "strings.txt");
+                    integersWriter = new FileWriter(args[i+1] + "integers.txt");
+                    floatsWriter = new FileWriter(args[i+1] + "floats.txt");
+                }
+            }
+
             BufferedReader reader = new BufferedReader(new FileReader("filename.txt"));
             String line = reader.readLine();
 
             while (line != null){
                 if(isNumber(line)){
                     integersWriter.write(line + "\n");
-                    System.out.println("number " + line);
                 }else if(isFloat(line)){
                     floatsWriter.write(line + "\n");
-                    System.out.println("float " + line);
                 }else {
                     stringsWriter.write(line + "\n");
-                    System.out.println(line);
                 }
                 line = reader.readLine();
             }
