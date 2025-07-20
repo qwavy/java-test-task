@@ -1,15 +1,32 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        File myObj = new File("filename.txt");
         try{
-            myObj.createNewFile();
+            BufferedReader reader = new BufferedReader(new FileReader("filename.txt"));
+            String line = reader.readLine();
+
+            while (line != null){
+                if(isNumber(line)){
+                    System.out.println("number " + line);
+                }else{
+                    System.out.println(line);
+                }
+                line = reader.readLine();
+            }
+
+            reader.close();
         } catch (IOException e){
             e.printStackTrace();
+        }
+    }
+    public static boolean isNumber(String arg) {
+        try{
+            Integer.parseInt(arg);
+            return true;
+        } catch (NumberFormatException e){
+            return  false;
         }
     }
 }
