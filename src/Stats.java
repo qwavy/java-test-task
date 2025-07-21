@@ -2,11 +2,14 @@ import java.util.*;
 import java.util.Collections;
 
 public class Stats {
-    public Stats(List<String> stringStats, List<Integer> integerStats, List<Float> floatStats, boolean maxStats) {
+    public Stats(List<String> stringStats, List<Integer> integerStats, List<Float> floatStats, boolean maxStats, boolean minStats) {
         if (maxStats) {
             getStringStats(stringStats);
             getIntegerStats(integerStats);
             getFloatStats(floatStats);
+        } else {
+            int totalCount = stringStats.size() + integerStats.size() + floatStats.size();
+            System.out.println("strings count " + stringStats.size() + "\n" + "integers count " + integerStats.size() + "\n" + "floats count " + floatStats.size() + "\n" + "total count " + totalCount);
         }
     }
 

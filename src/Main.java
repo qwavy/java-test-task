@@ -45,10 +45,7 @@ public class Main {
             stringsWriter.close();
             reader.close();
 
-            if(maxStats) {
-                Stats stats = new Stats(stringStats, integerStats, floatStats, maxStats);
-//                stats.getStats();
-            }
+            Stats stats = new Stats(stringStats, integerStats, floatStats, maxStats, minStats);
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();
