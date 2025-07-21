@@ -1,13 +1,19 @@
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         try {
             boolean minStats = Arrays.asList(args).contains("-s");
             boolean maxStats = Arrays.asList(args).contains("-f");
-            int totalCount = 0;
+
+            List<String> stringStats = new ArrayList<>();
+            List<Integer> integerStats = new ArrayList<>();
+            List<Float> floatStats = new ArrayList<>();
+
             FileNames fileNames = new FileNames(args);
 
             FileWriter stringsWriter = new FileWriter(fileNames.getPath() + "strings.txt");
@@ -18,16 +24,17 @@ public class Main {
             String line = reader.readLine();
 
             while (line != null) {
-                if (minStats) {
-                    totalCount++;
-                }
+
 
                 if (isNumber(line)) {
                     integersWriter.write(line + "\n");
+                    integerStats.add(Integer.parseInt(line));
                 } else if (isFloat(line)) {
                     floatsWriter.write(line + "\n");
+                    floatStats.add(Float.parseFloat(line));
                 } else {
                     stringsWriter.write(line + "\n");
+                    stringStats.add(line);
                 }
                 line = reader.readLine();
 
@@ -38,8 +45,9 @@ public class Main {
             stringsWriter.close();
             reader.close();
 
-            if (minStats) {
-                System.out.println("total count " + totalCount);
+            if(maxStats) {
+                Stats stats = new Stats(stringStats, integerStats, floatStats, maxStats);
+//                stats.getStats();
             }
         } catch (IOException e) {
             System.out.println(e);
