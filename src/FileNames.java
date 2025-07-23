@@ -24,7 +24,7 @@ public class FileNames {
             path = dirName + "/";
         }
         if (!prefix.isEmpty()) {
-            path += prefix + "_";
+            path += prefix;
         }
         return path;
     }

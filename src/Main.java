@@ -14,6 +14,7 @@ public class Main {
 
             if(inputFiles.isEmpty()){
                 System.out.println("no input files found");
+                return;
             }
 
             boolean minStats = Arrays.asList(args).contains("-s");
@@ -29,7 +30,6 @@ public class Main {
             FileWriter stringsWriter = null;
             FileWriter integersWriter = null;
             FileWriter floatsWriter = null;
-
 
 
             List<BufferedReader> readers = new ArrayList<>();
@@ -74,6 +74,11 @@ public class Main {
                 }
             }
 
+            Stats stats = new Stats(stringStats, integerStats, floatStats, maxStats, minStats);
+        } catch (IOException e) {
+            System.out.println(e);
+            e.printStackTrace();
+        } finally {
             if(integersWriter != null){
                 integersWriter.close();
             }
@@ -83,31 +88,17 @@ public class Main {
             if(stringsWriter != null){
                 stringsWriter.close();
             }
-
-
-            Stats stats = new Stats(stringStats, integerStats, floatStats, maxStats, minStats);
-        } catch (IOException e) {
-            System.out.println(e);
-            e.printStackTrace();
         }
     }
 
     public static boolean isNumber(String arg) {
-        try {
-            return arg.matches("[+-]?\\d+");
-//            Integer.parseInt(arg);
-//            return !arg.contains(".") && !arg.contains("e") && !arg.contains("E");
-        } catch (NumberFormatException e) {
-            return false;
-        }
+        return arg.matches("[+-]?\\d+");
     }
 
     public static boolean isFloat(String arg) {
         try {
             Double.parseDouble(arg);
-//            Float.parseFloat(arg);
             return (arg.contains(".") || arg.contains("e") || arg.contains("E"));
-//            return arg.contains(".") || arg.contains("e") || arg.contains("E");
         } catch (NumberFormatException e) {
             return false;
         }
