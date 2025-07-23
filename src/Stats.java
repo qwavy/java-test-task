@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.Collections;
 
 public class Stats {
-    public Stats(List<String> stringStats, List<Integer> integerStats, List<Float> floatStats, boolean maxStats, boolean minStats) {
+    public Stats(List<String> stringStats, List<Long> integerStats, List<Float> floatStats, boolean maxStats, boolean minStats) {
         if (maxStats) {
             getStringStats(stringStats);
             getIntegerStats(integerStats);
@@ -13,11 +13,11 @@ public class Stats {
         }
     }
 
-    public void getIntegerStats(List<Integer> integerStats) {
-        int max = Collections.max(integerStats);
-        int min = Collections.min(integerStats);
-        int sum = integerStats.stream().mapToInt(Integer::intValue).sum();
-        int avg = sum / integerStats.size();
+    public void getIntegerStats(List<Long> integerStats) {
+        long max = Collections.max(integerStats);
+        long min = Collections.min(integerStats);
+        long sum = integerStats.stream().mapToLong(Long::longValue).sum();
+        double avg = (double) sum / integerStats.size();
 
         System.out.print("full stats for integers " + "maximum " + max + " minimum " + min + " sum " + sum + " avg " + avg + "\n");
     }

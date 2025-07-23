@@ -21,7 +21,7 @@ public class Main {
             boolean appendToFile = Arrays.asList(args).contains("-a");
 
             List<String> stringStats = new ArrayList<>();
-            List<Integer> integerStats = new ArrayList<>();
+            List<Long> integerStats = new ArrayList<>();
             List<Float> floatStats = new ArrayList<>();
 
             FileNames fileNames = new FileNames(args);
@@ -53,7 +53,7 @@ public class Main {
                                 integersWriter = new FileWriter(fileNames.getPath() + "integers.txt", appendToFile);
                             }
                             integersWriter.write(line + "\n");
-                            integerStats.add(Integer.parseInt(line));
+                            integerStats.add(Long.parseLong(line));
                         } else if (isFloat(line)) {
                             if(floatsWriter == null){
                                 floatsWriter = new FileWriter(fileNames.getPath() + "floats.txt", appendToFile);
@@ -94,8 +94,9 @@ public class Main {
 
     public static boolean isNumber(String arg) {
         try {
-            Integer.parseInt(arg);
-            return true;
+            return arg.matches("[+-]?\\d+");
+//            Integer.parseInt(arg);
+//            return !arg.contains(".") && !arg.contains("e") && !arg.contains("E");
         } catch (NumberFormatException e) {
             return false;
         }
@@ -103,11 +104,12 @@ public class Main {
 
     public static boolean isFloat(String arg) {
         try {
-            Float.parseFloat(arg);
-            return true;
+            Double.parseDouble(arg);
+//            Float.parseFloat(arg);
+            return (arg.contains(".") || arg.contains("e") || arg.contains("E"));
+//            return arg.contains(".") || arg.contains("e") || arg.contains("E");
         } catch (NumberFormatException e) {
             return false;
         }
     }
-
 }
