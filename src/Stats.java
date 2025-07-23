@@ -8,7 +8,7 @@ public class Stats {
             getIntegerStats(integerStats);
             getFloatStats(floatStats);
         }
-        if ( minStats ) {
+        if (minStats) {
             int totalCount = stringStats.size() + integerStats.size() + floatStats.size();
             System.out.println("strings count " + stringStats.size() + "\n" + "integers count " + integerStats.size() + "\n" + "floats count " + floatStats.size() + "\n" + "total count " + totalCount);
         }
@@ -31,7 +31,7 @@ public class Stats {
         for (int i = 0; i < floatStats.size(); i++) {
             sum += floatStats.get(i);
         }
-        double avg = sum / floatStats.size();
+        float avg = sum / floatStats.size();
 
         System.out.print("full stats for floats " + "maximum " + max + " minimum " + min + " sum " + sum + " avg " + avg + "\n");
     }

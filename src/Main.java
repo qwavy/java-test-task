@@ -13,7 +13,7 @@ public class Main {
                     .collect(Collectors.toList());
 
             if(inputFiles.isEmpty()){
-                System.out.println("no input files found");
+                System.err.println("no input files found");
                 return;
             }
 
@@ -74,11 +74,6 @@ public class Main {
                 }
             }
 
-            Stats stats = new Stats(stringStats, integerStats, floatStats, maxStats, minStats);
-        } catch (IOException e) {
-            System.out.println(e);
-            e.printStackTrace();
-        } finally {
             if(integersWriter != null){
                 integersWriter.close();
             }
@@ -88,7 +83,13 @@ public class Main {
             if(stringsWriter != null){
                 stringsWriter.close();
             }
+
+            Stats stats = new Stats(stringStats, integerStats, floatStats, maxStats, minStats);
+        } catch (IOException e) {
+            System.out.println(e);
+            e.printStackTrace();
         }
+
     }
 
     public static boolean isNumber(String arg) {
