@@ -9,6 +9,7 @@ public class Main {
         try {
             boolean minStats = Arrays.asList(args).contains("-s");
             boolean maxStats = Arrays.asList(args).contains("-f");
+            boolean appendToFile = Arrays.asList(args).contains("-a");
 
             List<String> stringStats = new ArrayList<>();
             List<Integer> integerStats = new ArrayList<>();
@@ -16,16 +17,14 @@ public class Main {
 
             FileNames fileNames = new FileNames(args);
 
-            FileWriter stringsWriter = new FileWriter(fileNames.getPath() + "strings.txt");
-            FileWriter integersWriter = new FileWriter(fileNames.getPath() + "integers.txt");
-            FileWriter floatsWriter = new FileWriter(fileNames.getPath() + "floats.txt");
+            FileWriter stringsWriter = new FileWriter(fileNames.getPath() + "strings.txt", appendToFile);
+            FileWriter integersWriter = new FileWriter(fileNames.getPath() + "integers.txt", appendToFile);
+            FileWriter floatsWriter = new FileWriter(fileNames.getPath() + "floats.txt", appendToFile);
 
             BufferedReader reader = new BufferedReader(new FileReader("filename.txt"));
             String line = reader.readLine();
 
             while (line != null) {
-
-
                 if (isNumber(line)) {
                     integersWriter.write(line + "\n");
                     integerStats.add(Integer.parseInt(line));
